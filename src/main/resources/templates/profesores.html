@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="Profesores"></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        h2{
+            font-size: 12px;
+        }
+
+        .row{
+            padding: 8px 0;
+        }
+        #main{
+            max-width: 1700px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid" id="main" style="font-size: 12px">
+        <div th:object="${conteo}">
+            <h1 th:text="Profesores"></h1>
+            <h3 th:text="${conteo}">Conteo</h3>
+        </div>
+        <form class="col-1" id="boton_crear" action="/profesores/crear" method="get">
+            <input class="btn btn-primary" th:value="Crear_profesor" type="submit">
+        </form>
+        <div id="tabla">
+
+            <div id="cabecera" class="row">
+                <div class="col-1">
+                    <h2>Id</h2>
+                </div>
+                <div class="col-1">
+                    <h2 th:text="Nif"></h2>
+                </div>
+                <div class="col-1">
+                    <h2 th:text="Nombre"></h2>
+                </div>
+                <div class="col-1">
+                    <h2 th:text="Apellido1"></h2>
+                </div>
+                <div class="col-1">
+                    <h2 th:text="Apellido2"></h2>
+                </div>
+                <div class="col-1">
+                    <h2 th:text="Ciudad"></h2>
+                </div>
+                <div class="col-1">
+                    <h2 th:text="Direccion"></h2>
+                </div>
+                <div class="col-1">
+                    <h2 th:text="Telefono"></h2>
+                </div>
+                <div class="col-1">
+                    <h2 th:text="Fecha_de_nacimiento"></h2>
+                </div>
+                <div class="col-1">
+                    <h2 th:text="Tipo"></h2>
+                </div>
+                <div class="col-1">
+                    <h2 th:text="Departamento"></h2>
+                </div>
+            </div>
+
+            <div th:each="profesor : ${listaProfesores}" class="row">
+                <div class="col-1">
+                    <h2 th:text="${profesor.id}"></h2>
+                </div>
+                <div class="col-1">
+                    <h2 th:text="${profesor.nif}"></h2>
+                </div>
+                <div class="col-1">
+                    <h2 th:text="${profesor.nombre}"></h2>
+                </div>
+                <div class="col-1">
+                    <h2 th:text="${profesor.apellido1}"></h2>
+                </div>
+                <div class="col-1">
+                    <h2 th:text="${profesor.apellido2}"></h2>
+                </div>
+                <div class="col-1">
+                    <h2 th:text="${profesor.ciudad}"></h2>
+                </div>
+                <div class="col-1">
+                    <h2 th:text="${profesor.direccion}"></h2>
+                </div>
+                <div class="col-1">
+                    <h2 th:text="${profesor.telefono}"></h2>
+                </div>
+                <div class="col-1">
+                    <h2 th:text="${profesor.fecha_nacimiento}"></h2>
+                </div>
+                <div class="col-1">
+                    <h2 th:text="${profesor.tipo}"></h2>
+                </div>
+                <div class="col-1">
+                    <h2 th:text="${profesor.nombre_departamento}"></h2>
+                </div>
+                <div class="col-1">
+                    <form class="col-1" th:action="@{/profesores/__${profesor.id}__}" method="get">
+                        <input class="btn btn-primary" th:value="ver_detalle" type="submit">
+                    </form>
+                    <form class="col-1" th:action="@{/profesores/editar/__${profesor.id}__}" method="get">
+                        <input class="btn btn-warning" th:value="editar" type="submit">
+                    </form>
+                    <form class="col-1" th:action="@{/profesores/borrar/__${profesor.id}__}" method="post">
+                        <input class="btn btn-danger" th:value="borrar" type="submit">
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
